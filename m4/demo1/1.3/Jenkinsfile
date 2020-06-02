@@ -21,7 +21,7 @@ pipeline {
         stage('Push') {                 
             steps { 
                 script {
-                    withDockerRegistry([credentialsId: "docker_a, url: "" ]) {        
+                    withDockerRegistry([credentialsId: "docker_a", url: "" ]) {        
                         //image.push()
                      sh 'docker push iulianmail007/tst:latest'
                     }     

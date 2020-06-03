@@ -1,0 +1,32 @@
+def image
+
+pipeline {
+    agent any
+    stages {
+        stage('Build') {                 
+            steps {
+                script {
+                    image = docker.build("iulianmail007/tst:psod-pipelines", "--pull -f m4/Dockerfile m4")
+                }                
+            }
+        }   
+        stage('Smoke Test') {
+            steps {
+                script {
+                    container = image.run()
+                    container.stop()
+              }
+            }
+        }
+        stage('Push') {                 
+            steps { 
+                script {
+                    withDockerRegistry([credentialsId: "docker_a", url: "" ]) {        
+                        //image.push()
+                     bat 'docker push iulianmail007/tst:psod-pipelines'
+                    }     
+                }
+            }
+        }
+    }
+}

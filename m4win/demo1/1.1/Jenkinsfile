@@ -12,7 +12,7 @@ pipeline {
                     dotnet --list-runtimes
                 '''
                 powershell label: '', script: 'printenv'
-                powershell label: '', script: 'ls -l "$WORKSPACE"'
+                powershell label: '', script: 'ls -l "C:/Users/b/.jenkins/workspace/demo4-1/"'
             }
         }
         stage('Build') {

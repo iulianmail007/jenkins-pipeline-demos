@@ -23,7 +23,9 @@ pipeline {
                 script {
                     withDockerRegistry([credentialsId: "docker_a", url: "" ]) {        
                         //image.push()
-                     bat 'docker push iulianmail007/tst:psod-pipelines'
+                        bat label: '', script: '''
+                        docker push iulianmail007/tst:psod-pipelines
+                        '''
                     }     
                 }
             }
